@@ -20,9 +20,9 @@
             <tr>
                 <td scope="row">{{$comic->id}}</td>
                 <td>{{$comic->title}}</td>
-                <td>{{$comic->Type}}</td>
+                <td>{{$comic->type}}</td>
                 <td>
-                    <a class="btn btn-primary" href="">Vedi</a>
+                    <a class="btn btn-primary" href="{{route('comics.show', ['comic' => $comic->id])}}">Vedi</a>
                 </td>
             </tr>
         @endforeach
