@@ -4,7 +4,7 @@
 
 @section('content')
 
-<a href="" class="btn btn-primary">Crea nuovo formato di comics</a>
+<a href="{{route('comics.create')}}" class="btn btn-primary">Crea nuovo formato di comics</a>
 
 <table class="table table-striped">
     <thead>
