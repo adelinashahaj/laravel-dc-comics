@@ -1,3 +1,4 @@
+<!--questo e la pagina principale home-->
 @extends('layouts.app')
 
 @section('page-title', 'Comics')
