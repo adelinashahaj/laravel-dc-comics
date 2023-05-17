@@ -24,11 +24,44 @@
                 <td class="d-flex">
                     <a class="btn btn-primary me-2" href="{{route('comics.show', ['comic' => $comic->id])}}">Vedi</a>
                     <a class="btn btn-warning me-2" href="{{route('comics.edit', ['comic' => $comic->id])}}">Modifica</a>
+
                     <form action="{{route('comics.destroy', ['comic' => $comic->id])}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Elimina</button>
-                    </form>
+                      @csrf
+                       @method('DELETE')
+                      <!-- <button type="submit" class="btn btn-danger">Elimina</button>-->
+
+                              <!-- Button trigger modal -->
+                              <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
+                              data-bs-target="#staticBackdrop" data-bs-target="#modal{{ $comic->id }}">
+                              Elimina
+                              </button>
+                              <!-- Modal -->
+                              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                              tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                              aria-label="Close"></button>
+                                      </div>
+                                      <div class="modal-body">
+                                          ...
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary"
+                                              data-bs-dismiss="modal">NO</button>
+                                          <button type="submit" class="btn btn-danger delete_button">SI</button>
+
+                                      </div>
+                                  </div>
+                              </div>
+                              </div>
+
+                  </form>
+
+
+
                 </td>
             </tr>
         @endforeach
@@ -36,7 +69,13 @@
   </table>
 
 
-<!--un altro esempio con le card-->
+
+
+
+<!--
+*********************************
+
+un altro esempio con le card-->
 <div class="row">
     @foreach ($comics as $comic)
 
