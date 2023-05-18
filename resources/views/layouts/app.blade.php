@@ -14,6 +14,23 @@
 
     <main>
         <div class="container">
+            <!-- un metodo per dare l'errore se tu non metti i dati  (validazioni)-->
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+            
             @yield('content')
         </div>
     </main>

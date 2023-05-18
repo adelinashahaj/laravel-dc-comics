@@ -17,7 +17,7 @@ return new class extends Migration
             $table->softDeletes();
         });
     }
-
+// una funzione che ricupera  i dati su database come un cestino
     /**
      * Reverse the migrations.
      *
