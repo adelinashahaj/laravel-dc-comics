@@ -47,7 +47,7 @@ class ComicController extends Controller
             'type' => 'required|max:50',
         ]);
 
-
+       
         $form_data = $request->all();
 
         $newComic = new Comic();
