@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\StoreComicRequest;
+use App\Http\Requests\UpdateComicRequest;
 use App\Models\Comic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ComicController extends Controller
 {
@@ -33,10 +36,11 @@ class ComicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
 
     //metto le condizioni
+    /*
         $request->validate([
             'title' => 'required|max:50',
             'description' => 'nullable|max:65535',
@@ -47,8 +51,11 @@ class ComicController extends Controller
             'type' => 'required|max:50',
         ]);
 
-       
         $form_data = $request->all();
+*/
+
+// un altro alternativa per cambiare il message di errore in lingua italiana con validated e il file requests;
+        $form_data = $request->validated();
 
         $newComic = new Comic();
 
@@ -60,6 +67,7 @@ class ComicController extends Controller
         $newComic->sale_date = $form_data['sale_date'];
         $newComic->type = $form_data['type'];
 */
+// fill($form_data) prende tutti i dati dinamichamente
         $newComic->fill($form_data);
         $newComic->save();
 
@@ -97,11 +105,11 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateComicRequest $request, $id)
     {
-
+/*
         $request->validate([
-            'title' => 'required|max:50',
+            'title' => 'required|max:5',
             'description' => 'nullable|max:65535',
             'thumb' => 'required|url|max:255',
             'price' => 'required|max:10',
@@ -110,9 +118,12 @@ class ComicController extends Controller
             'type' => 'required|max:50',
         ]);
 
-
-        $comics = Comic::findOrFail($id);
+         
         $form_data = $request->all();
+*/
+        $comics = Comic::findOrFail($id);
+        $form_data = $request->validated();
+
         $comics->update($form_data);
         return redirect()->route('comics.show', ['comic'=>$comics->id]);
     }

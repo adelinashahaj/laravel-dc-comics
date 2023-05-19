@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
-                                        <form action="{{route('comics.destroy', ['comic' => $comic->id])}}" method="POST">
+                                        <form class="form_delete_comic" action="{{route('comics.destroy', ['comic' => $comic->id])}}" method="POST">
                                             @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">SI</button>
@@ -61,11 +61,30 @@
   </table>
 
 
-
-
-
-
 <!--
+un altro esempio per le alert:
+
+
+  <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Conferma eliminazione</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Confermi di voler eliminare l'elemento selezionato?
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger">Conferma eliminazione</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+
 *********************************
 un altro esempio con le card
 
@@ -81,36 +100,13 @@ un altro esempio con le card
           <a class="btn btn-primary me-2" href="{{route('comics.show', ['comic' => $comic->id])}}">Vedi</a>
           <a class="btn btn-warning me-2" href="{{route('comics.edit', ['comic' => $comic->id])}}">Modifica</a>
 
-               Button trigger modal
-              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$comic->id}}">
-                  Elimina
-              </button>
-
-               Modal
-              <div class="modal fade" id="exampleModal{{$comic->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                      ...
-                      </div>
-                      <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
                       <form action="{{route('comics.destroy', ['comic' => $comic->id])}}" method="POST">
                           @csrf
                               @method('DELETE')
-                              <button type="submit" class="btn btn-danger">SI</button>
+                              <button type="submit" onclick="return confirm(' Confermi di voler eliminare l'elemento selezionato?')" class="btn btn-danger">Elimina</button>
 
                           </form>
-
-                      </div>
-                  </div>
-                  </div>
               </div>
-
         </div>
       </div>
     @endforeach
